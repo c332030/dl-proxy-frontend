@@ -1,0 +1,31 @@
+
+name: build
+
+on:
+  push:
+    branches:
+      - "*"
+    tags-ignore:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          key: gradle
+          path: |
+            ~/.gradle/wrapper
+            ~/.gradle/jdks
+            ~/.gradle/caches
+      - run: ./gradlew --refresh-dependencies build
+      - uses: cc332030/init-ssh-action@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: deploy
+        run: ${{ secrets.BUILD_DEPLOY }}
