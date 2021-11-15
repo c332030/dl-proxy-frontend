@@ -1,6 +1,6 @@
 import React from 'react';
 
-function App() {
+function Main() {
   return (
     <div>
       <header>
@@ -9,4 +9,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
