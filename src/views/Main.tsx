@@ -1,6 +1,5 @@
 import React, {ReactNode} from 'react';
-import {Button, Input, Layout} from "antd";
-import styles from './Main.module.scss';
+import {Button, Form, Input, Layout} from "antd";
 
 const {Content} = Layout;
 
@@ -8,7 +7,7 @@ const {Content} = Layout;
  * State 类型
  */
 interface StateTypes {
-  url: String
+  url: string
 }
 
 /**
@@ -24,23 +23,54 @@ class Main extends React.Component <{}, StateTypes> {
     url: ''
   };
 
-  down = () => {
-    console.debug(`url: ${this.state.url}`);
+  onFinish = (values: any) => {
+    console.log('Success:', values);
+
+    window.open(`/proxy?url=${this.state.url}`, "_blank");
+
+  };
+
+  input = () => {
+    return (
+      <>
+        <Form
+          style={{
+            display: 'flex'
+            , flexDirection: "row"
+          }}
+          onFinish={this.onFinish}
+        >
+          <Form.Item
+            label={`链接`}
+            name={'url'}
+            rules={[{
+              required: true
+              , type: 'url'
+              , message: '请输入链接!'
+            }]}
+          >
+            <Input placeholder={'请输入链接'}
+              onChange={event =>
+                this.setState({
+                  url: event.target.value
+                })
+              }
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type={"primary"} htmlType={"submit"}>下载</Button>
+          </Form.Item>
+        </Form>
+      </>
+    )
   }
 
   render(): ReactNode {
     return (
       <Layout>
         <Content>
-          <a className={ styles.downA } />
-          <Input placeholder={'请输入链接'}
-            onChange={ event =>
-              this.setState({
-                url: event.target.value
-              })
-            }
-          />
-          <Button onClick={ this.down }>下载</Button>
+          {this.input()}
         </Content>
       </Layout>
     );
