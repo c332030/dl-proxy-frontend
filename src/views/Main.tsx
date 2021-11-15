@@ -24,11 +24,8 @@ class Main extends React.Component <{}, StateTypes> {
     url: ''
   };
 
-  onFinish = (values: any) => {
-    console.log('Success:', values);
-
+  onFinish = () => {
     window.open(`/proxy?url=${this.state.url}`, "_blank");
-
   };
 
   input = () => {

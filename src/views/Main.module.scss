@@ -14,11 +14,13 @@ $card_color: #fff;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
 
+  padding-bottom: 10rem;
+
 }
 
 .card {
 
-  height: 20rem;
+  height: 15rem;
   width: calc(100vw - 30rem);
   max-width: 40rem;
 
