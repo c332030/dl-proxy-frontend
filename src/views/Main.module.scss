@@ -1,4 +1,48 @@
 
-.downA {
-  display: none;
+$background_color: #f1f1f1;
+$card_color: #fff;
+
+.context {
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: $background_color;
+
+  display: flex;
+
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+
+}
+
+.card {
+
+  height: 20rem;
+  width: calc(100vw - 30rem);
+  max-width: 40rem;
+
+}
+
+.form {
+
+  display: flex;
+
+  flex-direction: row;
+
+}
+
+.formItem {
+
+  display: flex;
+
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+
+}
+
+.formItemUrl {
+
+  flex: 1;
+
 }

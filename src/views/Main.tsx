@@ -1,5 +1,6 @@
 import React, {ReactNode} from 'react';
-import {Button, Form, Input, Layout} from "antd";
+import {Button, Card, Form, Input, Layout} from "antd";
+import classes from './Main.module.scss';
 
 const {Content} = Layout;
 
@@ -34,13 +35,14 @@ class Main extends React.Component <{}, StateTypes> {
     return (
       <>
         <Form
-          style={{
-            display: 'flex'
-            , flexDirection: "row"
-          }}
+          className={classes.form}
           onFinish={this.onFinish}
         >
           <Form.Item
+            className={[
+              classes.formItem
+              , classes.formItemUrl
+            ].join(' ')}
             label={`链接`}
             name={'url'}
             rules={[{
@@ -58,7 +60,9 @@ class Main extends React.Component <{}, StateTypes> {
             />
           </Form.Item>
 
-          <Form.Item>
+          <Form.Item
+            className={classes.formItem}
+          >
             <Button type={"primary"} htmlType={"submit"}>下载</Button>
           </Form.Item>
         </Form>
@@ -69,8 +73,14 @@ class Main extends React.Component <{}, StateTypes> {
   render(): ReactNode {
     return (
       <Layout>
-        <Content>
-          {this.input()}
+        <Content className={
+          classes.context
+        }>
+          <Card title="下载" bordered={false}
+            className={classes.card}
+          >
+            {this.input()}
+          </Card>
         </Content>
       </Layout>
     );
