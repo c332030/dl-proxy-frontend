@@ -2,3 +2,6 @@
 = dl-proxy-frontend
 
 后端: https://github.com/cc332030/dl-proxy
+
+== 示例
+https://dl-proxy.c332030.com/
