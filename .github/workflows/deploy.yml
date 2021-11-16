@@ -25,3 +25,12 @@ jobs:
         with:
           node-version: '16'
       - run: npm i && npm run build
+      - uses: cc332030/init-ssh-action@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: cc332030/deploy-action@main
+        env:
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          ORIGIN_PATH: build
+          REMOTE_PATH: /home/program/dl-proxy/static
