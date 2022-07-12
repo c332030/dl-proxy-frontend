@@ -12,25 +12,13 @@ on:
       - "*"
 
 jobs:
-  job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          key: cache
-          path: |
-            node_modules
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm i && npm run build
-      - uses: cc332030/init-ssh-action@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      - uses: cc332030/deploy-action@main
-        env:
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          ORIGIN_PATH: build
-          REMOTE_PATH: /home/program/dl-proxy/static
+  build:
+    uses: cc332030/node/.github/workflows/node.yml@master
+    secrets:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      ORIGIN_PATH: build
+      REMOTE_PATH: /home/program/dl-proxy/static
+    with:
+      command: npm i && npm run build
