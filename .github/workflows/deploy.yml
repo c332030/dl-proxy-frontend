@@ -13,23 +13,10 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          key: cache
-          path: |
-            node_modules
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-      - run: npm i && npm run build
-      - uses: cc332030/deploy-action@main
-        timeout-minutes: 2
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
-          ORIGIN_PATH: build
-          REMOTE_PATH: /home/program/dl-proxy/static
+    uses: cc332030/node/.github/workflows/deploy.yml@master
+    secrets:
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      HOST: ${{ secrets.HOST }}
+      PORT: ${{ secrets.PORT }}
+      ORIGIN_PATH: build
+      REMOTE_PATH: /home/program/dl-proxy/static
