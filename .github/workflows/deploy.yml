@@ -18,5 +18,6 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       HOST: ${{ secrets.HOST }}
       PORT: ${{ secrets.PORT }}
-      ORIGIN_PATH: build
-      REMOTE_PATH: /home/program/dl-proxy/static
+    with:
+      origin-path: build
+      remote-path: /home/program/dl-proxy/static
