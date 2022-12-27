@@ -19,5 +19,4 @@ jobs:
       HOST: ${{ secrets.HOST }}
       PORT: ${{ secrets.PORT }}
     with:
-      origin-path: build
       remote-path: /home/program/dl-proxy/static
