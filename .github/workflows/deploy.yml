@@ -19,4 +19,5 @@ jobs:
       HOST: ${{ secrets.HOST }}
       PORT: ${{ secrets.PORT }}
     with:
+      node-version: 16
       remote-path: /home/program/dl-proxy/static
